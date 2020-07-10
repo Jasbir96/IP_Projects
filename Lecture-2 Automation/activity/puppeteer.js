@@ -11,7 +11,6 @@ async function fn() {
     });
     let pagesArr = await browser.pages();
     let page = pagesArr[0];
-    
     await page.goto(url);
     await page.type("#input-1", email);
     await page.type("#input-2", pwd);
@@ -81,9 +80,11 @@ async function challengeHandler(tab, url) {
     // }
     await tab.close();
 }
+
 async function navigationFn(selector, tab) {
     await Promise.all([tab.click(selector), tab.waitForNavigation({ waitUntil: "networkidle0" })]);
 }
+
 async function handleSaveDialogBox(selector, tab) {
     try {
         await tab.waitForSelector(selector, { visible: true, timeout: 10000 });
