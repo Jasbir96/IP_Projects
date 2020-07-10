@@ -4,6 +4,7 @@ let request = require("request");
 let matchFile = require("./allMatch.js");
 let url = "https://www.espncricinfo.com/series/_/id/8039/season/2015/icc-cricket-world-cup";
 request(url, cb);
+
 function cb(err, header, body) {
     // request is successfully processed
     if (err == null && header.statusCode == 200) {
@@ -19,6 +20,7 @@ function cb(err, header, body) {
         console.log(header);
     }
 }
+
 function parseHtml(body) {
     let $ = cheerio.load(body);
     let aPageAnchor = $("a[data-hover='View All Results']");
