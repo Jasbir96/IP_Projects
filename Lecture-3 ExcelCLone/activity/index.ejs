@@ -9,11 +9,21 @@
 </head>
 
 <body>
-    <div class="menu">Menu</div>
-    <div class="menu-options">Menu Options</div>
+    <div class="menu">
+        <div id="File">File</div>
+        <div id="Home">Home</div>
+    </div>
+
+    <div class="menu-options">
+        <div class="file-menu-options">
+            <div id="New">New</div>
+            <div id="Open">Open</div>
+            <div id="Save">Save</div>
+        </div>
+    </div>
     <div class="formula-bar">
-        <input type="text">
-        <input type="text"></div>
+        <input type="text" id="address-input">
+        <input type="text" id="formula-input"></div>
     <div class="cell-container" id="grid-container">
         <div id="top-left-cell" class="top-left-cell"></div>
         <div class="top-row" id="top-row">
@@ -42,6 +52,7 @@
             </div>
         </div>
         <div class="sheets">Sheets</div>
+        <script src="script.js"></script>
 </body>
 
 </html>

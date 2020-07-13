@@ -9,10 +9,14 @@ body,html{
 .menu{
     height: 30px;
     border: 1px solid;
+    display: flex;
 }
 .menu-options{
     height: 50px;
     border: 1px solid green
+}
+.menu-options>*{
+    display: flex;
 }
 .formula-bar{
     height: 30px;
