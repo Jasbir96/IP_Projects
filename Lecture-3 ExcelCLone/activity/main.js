@@ -3,6 +3,12 @@
 //npm install electron --save-dev
 // modify package.json
 const electron = require("electron");
+const ejs = require("ejs-electron");
+ejs.data({
+    title: "My Excel",
+    rows: 100,
+    cols: 26
+})
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 async function createWindow() {
@@ -12,11 +18,9 @@ async function createWindow() {
             nodeIntegration: true
         }
     })
-
-    await win.loadFile("index.html");
+    await win.loadFile("index.ejs");
     win.maximize();
     win.webContents.openDevTools();
-
 }
 
 app.whenReady().then(createWindow);

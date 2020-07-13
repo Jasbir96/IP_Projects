@@ -1,0 +1,76 @@
+/* Default styling */
+body,html{
+    margin: 0px;
+    padding: 0px;
+}
+*{
+    box-sizing: border-box;
+}
+.menu{
+    height: 30px;
+    border: 1px solid;
+}
+.menu-options{
+    height: 50px;
+    border: 1px solid green
+}
+.formula-bar{
+    height: 30px;
+    border: 1px solid blue;
+}
+.cell-container{
+    background-color: springgreen;
+    height: calc(100vh - 130px);
+    overflow: auto;
+    position: relative;
+}
+.cell-container>*{
+position: absolute;
+top:0px;
+}
+.sheets{
+    height: 20px;
+    border: 1px solid red
+}
+.row{
+    display: flex;
+}
+.row .cell{
+    border:1px solid teal;
+min-height: 25px;
+min-width:88px;
+}
+.top-row{
+    display: flex;
+    background-color: lightcyan;
+    position: absolute;
+    top: 0px;
+    left: 25px;
+}
+.left-col{
+    width: 25px;
+    background-color: lightcyan;
+    border: 1px solid teal;
+    top: 25px;
+}
+.top-row .cell{
+    border: 1px solid teal;
+    min-height: 25px;
+    min-width: 88px;
+    text-align: center;
+}
+.left-col .cell{
+border:1px solid cyan;
+height:25px;
+width:25px;
+}
+.top-left-cell{
+    height: 25px;
+    width: 25px;
+    border: 1px solid teal;
+    background-color: lightcyan;
+}
+.grid{
+top:25px;
+left: 25px;
+}
