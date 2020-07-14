@@ -84,9 +84,12 @@ $(document).ready(
             let cellObject = getCellObject(rowId, colId);
             // set formula property
             // i 
+            // isFormulaValid($(this).html(), cellObject)
+
             if (cellObject.formula == $(this).val()) {
                 return;
             }
+
             if (cellObject.formula) {
                 removeFormula(cellObject, rowId, colId)
             }
