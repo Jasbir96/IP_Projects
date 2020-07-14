@@ -10,7 +10,9 @@ $(document).ready(
             let ri = Number($(this).attr("ri"));
             let ci = Number($(this).attr("ci"));
             let Address = String.fromCharCode(65 + ci) + (ri + 1);
+            let cellObject = getCellObject(ri, ci);
             $("#address-input").val(Address);
+            $("#formula-input").val(cellObject.formula);
         })
         // Ne click=> Ui and DB 
         $("#New").on("click", function () {
@@ -21,10 +23,12 @@ $(document).ready(
                 let row = [];
                 for (let j = 0; j < cells.length; j++) {
                     $(cells[j]).html("");
+
                     let cell = {
                         value: "",
-                         formula: "",
-                        downstream: []
+                        formula: "",
+                        downstream: [],
+                        upstream: []
                     }
                     row.push(cell);
                 }
@@ -43,6 +47,7 @@ $(document).ready(
             let sdb = await dialog.showOpenDialog();
             let buffContent = fs.readFileSync(sdb.filePaths[0]);
             db = JSON.parse(buffContent);
+
             let rows = $("#grid").find(".row");
             for (let i = 0; i < rows.length; i++) {
                 let cells = $(rows[i]).find(".cell");
@@ -58,17 +63,33 @@ $(document).ready(
         $("#grid .cell").on("blur", function () {
             let ri = Number($(this).attr("ri"));
             let ci = Number($(this).attr("ci"));
-            console.log(ri + " " + ci)
+            let cellObject = getCellObject(ri, ci);
+
+            if ($(this).html() == cellObject.value) {
+                return;
+            }
+            if (cellObject.formula) {
+                removeFormula(cellObject, ri, ci);
+            }
+
+            // console.log(ri + " " + ci)
             // db[ri][ci].value = $(this).html();
             updateCell(ri, ci, $(this).html())
             // console.log(db);
         })
+
         $("#formula-input").on("blur", function () {
             let cellAddress = $("#address-input").val();
             let { rowId, colId } = getRcFAddr(cellAddress);
             let cellObject = getCellObject(rowId, colId);
             // set formula property
             // i 
+            if (cellObject.formula == $(this).val()) {
+                return;
+            }
+            if (cellObject.formula) {
+                removeFormula(cellObject, rowId, colId)
+            }
             cellObject.formula = $(this).val();
             // evaluate formula
             let rVal = evaluate(cellObject);
@@ -107,14 +128,15 @@ $(document).ready(
 
             for (let i = 0; i < cellObject.downstream.length; i++) {
                 let sdsorc = cellObject.downstream[i];
-                let fdso = getCellObject(sdsorc.rowId,sdsorc.colId);
+                let fdso = getCellObject(sdsorc.rowId, sdsorc.colId);
                 let rVal = evaluate(fdso);
                 updateCell(sdsorc.rowId, sdsorc.colId, rVal)
             }
         }
 
         function setupFormula(rowId, colId, formula) {
-// ( A1 + A2 )
+            // ( A1 + A2 )
+            let cellObject = getCellObject(rowId, colId);
             let formulaComponent = formula.split(" ");
             // [(,A1,+A2,)]
             for (let i = 0; i < formulaComponent.length; i++) {
@@ -125,16 +147,36 @@ $(document).ready(
                     let parentObj = db[parent.rowId][parent.colId];
 
                     parentObj.downstream.push({
-                        rowId, colId
+                        rowId: rowId, colId: colId
+                    })
+                    cellObject.upstream.push({
+                        rowId: parent.rowId,
+                        colId: parent.colId
                     })
                 }
             }
         }
 
+        function removeFormula(cellObject, rowId, colId) {
+            // delete yourself from parent's downstream
+            for (let i = 0; i < cellObject.upstream.length; i++) {
+                let suso = cellObject.upstream[i];
+                let fuso = getCellObject(suso.rowId, suso.colId);
+                let fupArr = [];
+                for (let j = 0; j < fuso.downstream.length; j++) {
+                    let rc = fuso.downstream[j];
+                    if (!(rc.rowId == rowId && rc.colId == colId)) {
+                        fupArr.push(rc);
+                    }
+                }
+                fuso.downstream = fupArr;
+            }
+            // remove formula
+            cellObject.formula = "";
+            // clear upstream
+            cellObject.upstream = [];
 
-
-
-
+        }
         function getCellObject(rowId, colId) {
             return db[rowId][colId];
         }
