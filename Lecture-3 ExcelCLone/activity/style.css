@@ -15,9 +15,20 @@ body,html{
     height: 50px;
     border: 1px solid green
 }
-.menu-options>*{
+.menu-row{
     display: flex;
+    text-align: center;
 }
+ .menu-options-item{
+    display: none;;
+    width:300px
+}
+.menu-options-item.selected{
+    display: flex;
+    justify-content: space-around;
+    
+}
+
 .formula-bar{
     height: 30px;
     border: 1px solid blue;
@@ -77,4 +88,7 @@ width:25px;
 .grid{
 top:25px;
 left: 25px;
+}
+.menu-row input[type="button"].selected{
+    background-color: gray;
 }

@@ -15,11 +15,55 @@
     </div>
 
     <div class="menu-options">
-        <div class="file-menu-options">
+        <div class="menu-options-item" id="File-menu-options">
             <div id="New">New</div>
             <div id="Open">Open</div>
             <div id="Save">Save</div>
         </div>
+        <div class="menu-options-item" id="Home-menu-options">
+            <div class="menu-group ">
+                <div class="menu-row">
+                    <div class="menu-subgroup ">
+                        <select id="font-family">
+                            <option value="Arial">Arial</option>
+                            <option value="Cambria">Cambria</option>
+                            <option value="Georgia">Georgia</option>
+                            <option value="monospace">Monospace</option>
+                            <option value="sans-serif">Sans-Serif</option>
+                            <option value="fantasy">Fantasy</option>
+                        </select>
+                        <div class="style-options">
+                            <input id="bold" type="button" value="B">
+                            <input id="underline" type="button" value="U">
+                            <input id="italic" type="button" value="I">
+                        </div>
+                    </div>
+                    <div class="menu-subgroup ">
+                        <select id="font-size">
+                            <option value="8">8</option>
+                            <option value="10">10</option>
+                            <option value="12">12</option>
+                            <option value="14">14</option>
+                            <option value="16">16</option>
+                        </select>
+                        <div class="menu_color-container d-b"> 
+                            <input id="bg-color" type="color" value="#FFFFFF">
+                            <input id="text-color" type="color" value="#000000">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-group d-ib">
+                <div class="menu-row">
+                    <input id="left" type="button" halign="left" value="L">
+                    <input id="center" type="button" halign="center" value="C">
+                    <input id="right" type="button" halign="right" value="R">
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="formula-bar">
         <input type="text" id="address-input">

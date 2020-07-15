@@ -22,5 +22,4 @@ async function createWindow() {
     win.maximize();
     win.webContents.openDevTools();
 }
-
 app.whenReady().then(createWindow);
