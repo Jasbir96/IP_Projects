@@ -30,3 +30,9 @@
   * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Drawing_graphics
   * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Manipulating_documents 
   * https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications
+  * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+  * https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning
+  * https://developer.mozilla.org/en-US/docs/Web/Events
+  * https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D
+  * https://socket.io/docs/
+  * https://www.youtube.com/watch?v=PjiXkJ6P9pQ
